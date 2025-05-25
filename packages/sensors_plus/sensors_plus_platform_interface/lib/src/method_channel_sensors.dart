@@ -55,7 +55,7 @@ class MethodChannelSensors extends SensorsPlatform {
     _accelerometerEvents ??= _accelerometerEventChannel
         .receiveBroadcastStream()
         .map((dynamic event) {
-      final list = event.cast<double>();
+      final list = event.map((e) => e.toDouble()).toList();
       return AccelerometerEvent(
         list[0]!,
         list[1]!,
@@ -85,7 +85,7 @@ class MethodChannelSensors extends SensorsPlatform {
     _methodChannel.invokeMethod('setGyroscopeSamplingPeriod', microseconds);
     _gyroscopeEvents ??=
         _gyroscopeEventChannel.receiveBroadcastStream().map((dynamic event) {
-      final list = event.cast<double>();
+      final list = event.map((e) => e.toDouble()).toList();
       return GyroscopeEvent(
         list[0]!,
         list[1]!,
@@ -117,7 +117,7 @@ class MethodChannelSensors extends SensorsPlatform {
     _userAccelerometerEvents ??= _userAccelerometerEventChannel
         .receiveBroadcastStream()
         .map((dynamic event) {
-      final list = event.cast<double>();
+      final list = event.map((e) => e.toDouble()).toList();
       return UserAccelerometerEvent(
         list[0]!,
         list[1]!,
@@ -147,7 +147,7 @@ class MethodChannelSensors extends SensorsPlatform {
     _methodChannel.invokeMethod('setMagnetometerSamplingPeriod', microseconds);
     _magnetometerEvents ??=
         _magnetometerEventChannel.receiveBroadcastStream().map((dynamic event) {
-      final list = event.cast<double>();
+      final list = event.map((e) => e.toDouble()).toList();
       return MagnetometerEvent(
         list[0]!,
         list[1]!,
@@ -177,7 +177,7 @@ class MethodChannelSensors extends SensorsPlatform {
     _methodChannel.invokeMethod('setBarometerSamplingPeriod', microseconds);
     _barometerEvents ??=
         _barometerEventChannel.receiveBroadcastStream().map((dynamic event) {
-      final list = event.cast<double>();
+      final list = event.map((e) => e.toDouble()).toList();
       return BarometerEvent(
         list[0]!,
         DateTime.fromMicrosecondsSinceEpoch(list[1]!.toInt()),
